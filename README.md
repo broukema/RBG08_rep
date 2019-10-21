@@ -1,13 +1,9 @@
 ### [ReScience C](https://rescience.github.io/) article template
 
-This repository contains the Latex (optional) template for writing a ReScience
-C article and the (mandatory) YAML metadata file. For the actual article,
-you're free to use any software you like as long as you enforce the proposed
-PDF style. A tool is available for the latex template that produces latex
-definitions from the metadata file. If you use another software, make sure that
-metadata and PDF are always synced.
-
-You can also use overleaf with the [provided template](https://www.overleaf.com/read/kfrwdmygjyqw) but in this case, you'll have to enter `metadata.tex` manually.
+This repository is a very raw stub for a check on reproducing results from
+at least one section of a paper published in 2008. The attempt to reproduce
+the results will constitute a research article to be submitted as a ReScience
+C article with a (mandatory) YAML metadata file.
 
 #### Usage
 
@@ -27,4 +23,3 @@ After acceptance, you'll need to complete [metadata.yaml](./metadata.yaml) with 
 ```bash
 $ make
 ```
-

@@ -1,0 +1,92 @@
+diff --git a/astromisc/lib/coco.f b/astromisc/lib/coco.f
+index 284b696..0a74026 100644
+--- a/astromisc/lib/coco.f
++++ b/astromisc/lib/coco.f
+@@ -20,8 +20,8 @@ c     ==== subroutines to convert between coordinate systems ====
+ c     B.Roukema Sep 1995
+ 
+ 
+-      program testcoco
+-c      subroutine testcoco
++c      program testcoco
++      subroutine testcoco
+ 
+       call init_coco
+ 
+@@ -390,7 +390,3 @@ c     matrix M (p B42 of Almanac 1998, spatial part only, no prop. motion etc.)
+ 
+       return
+       end
+-
+-
+-            
+-
+diff --git a/circles_f77.f b/circles_f77.f
+index 5cc19d5..9609e04 100644
+--- a/circles_f77.f
++++ b/circles_f77.f
+@@ -1406,7 +1406,7 @@ c     ---- v0.1.34 ----
+      _                             sfr_iv(ithdodec,iv,jv)+ 1.0
+                               cor_iv(ithdodec,iv,jv)=
+      _                             cor_iv(ithdodec,iv,jv)+
+-     _                             + 2.0* tt1*tt2 ! CSS98b
++     _                             2.0* tt1*tt2 ! CSS98b
+                               cwg_iv(ithdodec,iv,jv)=
+      _                             cwg_iv(ithdodec,iv,jv)+
+      _                             tt1*tt1+tt2*tt2
+@@ -2014,5 +2014,3 @@ c     --- v0.1.34 ---
+ 
+ c     !! dot( ) moved to rdCOBE.f
+ c     !! dotv, crossv, orth_axes to orthaxes.f
+-
+-
+diff --git a/lib/psmoot.c b/lib/psmoot.c
+index e465302..9f57458 100644
+--- a/lib/psmoot.c
++++ b/lib/psmoot.c
+@@ -71,7 +71,7 @@
+ #include <gsl/gsl_vector.h>
+ #include <gsl/gsl_blas.h>
+ #include <gsl/gsl_multifit_nlin.h>
+-     
++#include <gsl/gsl_version.h>
+ 
+ /* #define TEST_PSMOOT */
+ #define MXANG_LOCAL 500
+@@ -207,6 +207,17 @@ void PSMOOT(
+ {
+   int iq, iang_p;
+ 
++
++  /* This smoothing return would need to be updated for GSL versions
++     that have <gsl/gsl_multifit_nlinear.h> instead of
++     <gsl/gsl_multifit_nlin.h>.
++     This hack leaves the c_ang4 values unmodified (unsmoothed).
++*/
++#if GSL_MAJOR_VERSION >= 2
++  return;
++#endif
++
++
+   /* INITIALISATIONS */
+ 
+   /* things which the GSL example set as constants but we do not */
+@@ -306,7 +317,10 @@ void PSMOOT(
+         }
+       while (status == GSL_CONTINUE && iter < 500);
+ 
++#if GSL_MAJOR_VERSION >= 2
++#else
+       gsl_multifit_covar (s->J, 0.0, covar);
++#endif
+ 
+ #define FIT(i) gsl_vector_get(s->x, i)
+ #define ERR(i) sqrt(gsl_matrix_get(covar,i,i))
+@@ -326,7 +340,6 @@ void PSMOOT(
+         };
+ #endif
+ 
+-
+       {
+         double chi = gsl_blas_dnrm2(s->f);
+         printf("chisq/dof = %g\n",  pow(chi, 2.0)/ (n - p));

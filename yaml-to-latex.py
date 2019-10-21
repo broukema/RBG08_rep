@@ -18,6 +18,7 @@ def generate_latex_metadata(filename, article):
         "\\def \\reviewerIORCID{{{_.reviewers[0].orcid}}}\n"
         "\\def \\reviewerIINAME{{{_.reviewers[1].name}}}\n"
         "\\def \\reviewerIIORCID{{{_.reviewers[1].orcid}}}\n"
+        "\\def \\dateDRAFTED{{{_.date_drafted}}}\n"
         "\\def \\dateRECEIVED{{{_.date_received}}}\n"
         "\\def \\dateACCEPTED{{{_.date_accepted}}}\n"
         "\\def \\datePUBLISHED{{{_.date_published}}}\n"
