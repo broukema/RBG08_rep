@@ -5,7 +5,7 @@
 def generate_latex_metadata(filename, article):
 
     abstract = article.abstract.replace("&", "\&")
-    
+
     content = (
         "% DO NOT EDIT - automatically generated from {filename}\n\n"
         "\\def \\codeURL{{{_.code.url}}}\n"
@@ -18,6 +18,7 @@ def generate_latex_metadata(filename, article):
         "\\def \\reviewerIORCID{{{_.reviewers[0].orcid}}}\n"
         "\\def \\reviewerIINAME{{{_.reviewers[1].name}}}\n"
         "\\def \\reviewerIIORCID{{{_.reviewers[1].orcid}}}\n"
+        "\\def \\dateDRAFTED{{{_.date_drafted}}}\n"
         "\\def \\dateRECEIVED{{{_.date_received}}}\n"
         "\\def \\dateACCEPTED{{{_.date_accepted}}}\n"
         "\\def \\datePUBLISHED{{{_.date_published}}}\n"
@@ -59,7 +60,7 @@ def generate_latex_metadata(filename, article):
             content += "\\affil[{_.code}]{{{_.name}, {_.address}}}\n".format(_=a)
         else:
             content += "\\affil[{_.code}]{{{_.name}}}\n".format(_=a)
-                
+
     return content
 
 
@@ -80,7 +81,7 @@ if __name__ == '__main__':
     filename_out = args.filename_out
 
     # print("Generating latex definitions ({1}) from {0}".format(filename_in, filename_out))
-    
+
     with open(filename_in, "r") as file:
         article = Article(file.read())
 

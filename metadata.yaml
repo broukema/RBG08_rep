@@ -5,57 +5,38 @@
 #  - For a successful replication, it shoudl be prefixed with "[Re]"
 #  - For a failed replication, it should be prefixed with "[¬Re]"
 #  - For other article types, no instruction (but please, not too long)
-title: "ReScience (R)evolution"
+title: "Reproducibility of 'Poincaré dodecahedral space parameter estimates'"
 
 # List of authors with name, orcid number, email and affiliation
 # Affiliation "*" means contact author
 authors:
-  - name: Konrad Hinsen
-    orcid: 0000-0003-0330-9428
-    email: konrad.hinsen@cnrs.fr
-    affiliations: 1,2
-    
-  - name: Nicolas P. Rougier
-    orcid: 0000-0002-6972-589X
-    email: Nicolas.Rougier@inria.fr
-    affiliations: 3,4,5,*      # * is for contact author
+  - name: Boudewijn F. Roukema
+    orcid: 0000-0002-3772-0250
+    email: boud astro.uni.torun.pl
+    affiliations: 1,2,*
 
 # List of affiliations with code (corresponding to author affiliations), name
 # and address. You can also use these affiliations to add text such as "Equal
 # contributions" as name (with no address).
 affiliations:
   - code:    1
-    name:    Centre de Biophysique Moléculaire, CNRS UPR4301
-    address: Orléans, France
-    
+    name:    Institute of Astronomy, Faculty of Physics, Astronomy and Informatics, Nicolaus Copernicus University
+    address: Grudziadzka 5, 87-100 Toruń, Poland
+
   - code:    2
-    name:    Synchrotron SOLEIL, Division Expériences
-    address: Gif sur Yvette, France
-    
-  - code:    3
-    name:    INRIA Bordeaux Sud-Ouest
-    address: Bordeaux, France
-    
-  - code:    4
-    name:    LaBRI, Université de Bordeaux, Institut Polytechnique de Bordeaux,
-             Centre National de la Recherche Scientifique, UMR 5800
-    address: Talence, France
-    
-  - code:    5
-    name:    Institut des Maladies Neurodégénératives, Université  de Bordeaux,
-             Centre National de la Recherche Scientifique, UMR 5293
-    address: Bordeaux, France
+    name:    Univ Lyon, Ens de Lyon, Univ Lyon1, CNRS, Centre de Recherche Astrophysique de Lyon UMR5574
+    address: F–69007, Lyon, France
 
 
 # List of keywords (adding the programming language might be a good idea)
-keywords: rescience c, rescience x
+keywords: rescience c, fortran, cosmology
 
 # Code URL and DOI (url is mandatory for replication, doi after acceptance)
 # You can get a DOI for your code from Zenodo,
 #   see https://guides.github.com/activities/citable-code/
 code:
-  - url: https://github.com/rescience-c/template
-  - doi: 
+  - url: https://bitbucket.org/broukema/0807.4260
+  - doi:
 
 # Date URL and DOI (optional if no data)
 data:
@@ -64,51 +45,47 @@ data:
 
 # Information about the original article that has been replicated
 replication:
- - cite: # Full textual citation
- - bib:  # Bibtex key (if any) in your bibliography file
- - url:  # URL to the PDF, try to link to a non-paywall version
- - doi:  # Regular digital object identifier
+ - cite: Roukema, B. F.; Buliński, Z.; Gaudin, N. E., 2008, Poincaré dodecahedral space parameter estimates, Astronomy and Astrophysics, 492, 657-673 # Full textual citation
+ - bib: RBG08 # Bibtex key (if any) in your bibliography file
+ - url: https://ui.adsabs.harvard.edu/link_gateway/2008A\%26A...492..657R/PUB_PDF # URL to the PDF, try to link to a non-paywall version
+ - doi: 10.1051/0004-6361:200810685 # Regular digital object identifier
 
 # Don't forget to surround abstract with double quotes
-abstract: "Three years have passed since ReScience published its first article
-           and since September 2015, things have been going steadily. We're
-           still alive, independent and without a budget. In the meantime, we
-           have published around 20 articles (mostly in computational
-           neuroscience & computational ecology) and the initial has grown
-           from around 10 to roughly 100 members (editors and reviewers), we
-           have advertised ReScience at several conferences worldwide, gave
-           some interviews and we published an article introducing ReScience in
-           PeerJ. Based on our experience at managing the journal during these
-           three years, we think the time is ripe for proposing some changes."
+abstract: "The surface-of-last-scattering optimal cross-correlation method of finding a
+           preferred orientation of the fundamental domain of the spatial section of the
+           Universe, under the working hypothesis that the spatial section is a Poincaré
+           dodecahedral space developed in earlier work, was published in 2008 (RBG08). The steps
+           required to download the Wilkinson Microwave Anisotropy Probe (WMAP) five-year data
+           and the software code used in RBG08 and reproduce the main results of that paper
+           are examined here to see if the earlier work is reproducible."
 
 # Bibliography file (yours)
-bibliography: bibliography.bib
-  
+bibliography: RBG08_rep.bib
+
 # Type of the article
 # Type can be:
 #  * Editorial
 #  * Letter
 #  * Replication
-type: Editorial
+type: Replication
 
 # Scientific domain of the article (e.g. Computational Neuroscience)
 #  (one domain only & try to be not overly specific)
-domain: 
+domain: astronomy
 
 # Coding language (main one only if several)
-language:
+language: fortran
 
-  
 # To be filled by the author(s) after acceptance
 # -----------------------------------------------------------------------------
 
 # For example, the URL of the GitHub issue where review actually occured
-review: 
-  - url: 
+review:
+  - url:
 
 contributors:
   - name:
-    orcid: 
+    orcid:
     role: editor
   - name:
     orcid:
@@ -117,11 +94,12 @@ contributors:
     orcid:
     role: reviewer
 
-# This information will be provided by the editor
+# This information will be provided by the editor (except for "drafted", which should be blanked before submission)
 dates:
-  - received:  November 1, 2018
+  - drafted: 2019-10-21
+  - received:
   - accepted:
-  - published: 
+  - published:
 
 # This information will be provided by the editor
 article:
