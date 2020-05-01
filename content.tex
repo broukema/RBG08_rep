@@ -5,14 +5,16 @@
 
 \section{Introduction}
 
-The aim in this paper is to reproduce the results that use the method described
-in Section 3.2 and the observational analysis results described in Section 4.2,
-displayed in Figs.~3, 4, 5 and given numerically in Tables 2 and 3.
+The aim in \emph{this} paper is to reproduce the results that use the
+method described in Section 3.2 and the observational
+analysis results described in Section 4.2, displayed in Figs.~3, 4, 5
+and given numerically in Tables 2 and 3, where the numbers here
+indicate those in RBG08.
 
 \section{Method}
 
-The steps used to try to reproduce the original results require reading of the appropriate
-sections of RBG08.
+The first steps planned for trying to reproduce the original results
+were to read the appropriate sections of RBG08.
 \begin{enumerate}
 \item
   Section 2.1\supercite{RBG08} states that the analysis method of Section 3.2 requires
@@ -28,6 +30,14 @@ sections of RBG08.
   for generating the figures and tables. This software is downloaded as
   \url{http://cosmo.torun.pl/GPLdownload/dodec/circles-0.3.2.1.tar.gz}.
 \end{enumerate}
+
+The next step was to develop a script on a {\sc git} repository server
+that satisfies the requirements of the international scientific community,
+specifically the International Science Council\supercite{ISCFreedoms}, by
+not blocking access to scientists of any countries or territories.
+As of 2020, several popular {\sc git} repository servers block access to
+scientists and other citizens of several territories\supercite{Github2020}.
+
 
 \begin{table}
   \begin{tabular}{ll}
@@ -59,9 +69,53 @@ sections of RBG08.
 
 \subsection{Compiling}
 
-\textbf{TODO: comment on the hacks, GSL API change.}
+Fixes needed in order to successfully compile {\sc circles} include:
+\begin{enumerate}
+\item
+  A Fortran 77 line that ended on one line with a $+$ symbol and started on the next line with
+  another $+$ symbol (within the valid columns for standard Fortran 77) was apparently accepted
+  by the {\sc gcc} family fortran compiler in 2008, but not now (2020). One of the $+$ symbols
+  was removed.
+\item
+  A fitting algorithm {\sc gsl\_multifit\_covar} available in GNU Scientific Library ({\sc GSL})
+  versions 1.x was obsoleted; it is no longer present in modern 2.x versions of {\sc GSL}. With
+  the aim of reproducing the calculations as close as possible as to the way they were done
+  at the time of the original project, {\sc GSL-1.10} was downloaded and compiled from source.
+\end{enumerate}
 
 \subsection{Running}
 
-\textbf{TODO: comment on the lack of a specific script indicated in the paper; inside knowledge makes
-  it easier to rederive an appropriate list of commands.}
+At the time of writing the original paper, I felt that the use of GNU
+tools to provide a free-licensed package configurable and compilable
+with {\tt ./configure \&\& make} and a detailed {\tt ./circles
+  -{}-help} command would be sufficient to enable easy reproduction by
+a scientifically competent user. For example, invokin the {\sc
+  circles} help option shows both single-hyphen, one-character options
+and their equivalent double-hyphen, long options, such as
+\mbox{{\tt -i,  -{}-cmb\_file\_raw=FILE cmb fits file of input data}}.
+\sloppy
+
+\fussy
+In addition, I also stored my own private notes of what I intended to
+be most of the significant steps taken in carrying out the project.
+However, in trying to reproduce these steps now, I see that my notes
+are not as complete as they should be. For the purpose of
+reproducibility, I have had to prepare a completely fresh {\sc bash}
+script that verifies the sha512 checksums of input data files and
+software packages that are downloaded from source rather than provided
+within the security context of the host system. This is partly based
+on more recent attempts at reproducibility in my own recent papers in
+which {\sc git} commit hashes of the
+software\supercite{Roukema17silvir} and a {\sc bash} script for
+running the full software\supercite{RO19flatness} were provided.
+
+This is an example of the problem of ``insider knowledge'' being
+required for the reproducibility of a paper, where ``insider'' also
+includes knowledge that may still be coded in the scientist's brain,
+but not in written form.
+
+
+\begin{enumerate}
+\item
+  TODO...
+\end{enumerate}

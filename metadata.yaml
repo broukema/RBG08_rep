@@ -36,7 +36,7 @@ keywords: rescience c, fortran, cosmology
 # Software Heritage.
 #   see https://guides.github.com/activities/citable-code/
 code:
-  - url: https://bitbucket.org/broukema/0807.4260
+  - url: https://codeberg.org/boud/0807.4260
   - doi:
   - swh: 
 
