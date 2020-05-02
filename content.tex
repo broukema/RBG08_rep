@@ -1,42 +1,100 @@
 
 
 \abstract{\articleABSTRACT} %% seems to be missing in the template
-
+\supercite{RBG08}
 
 \section{Introduction}
 
-The aim in \emph{this} paper is to reproduce the results that use the
-method described in Section 3.2 and the observational
-analysis results described in Section 4.2, displayed in Figs.~3, 4, 5
-and given numerically in Tables 2 and 3, where the numbers here
-indicate those in RBG08.
+This paper studies the reproducibility of the main observational
+results of a cosmic topology research paper published by myself and
+co-authors in 2008\supercite{RBG08}. The paper used the
+surface-of-last-scattering optimal cross-correlation method of finding
+a preferred orientation of the fundamental domain of the spatial
+section of the Universe, under the working hypothesis that the spatial
+section is a Poincaré dodecahedral space\supercite{LumNat03}. The
+code was developed by me, with comments provided by my coauthors. The
+results that should be reproduced are those that use the method
+described in Section 3.2 of RBG08, and the observational analysis
+results described in Section 4.2, displayed in Figs.~3, 4, 5 and given
+numerically in Tables 2 and 3 of RBG08. Related cosmic topology papers
+by other authors are published with no references to software package
+details or software licences.
+
+The reason for attempting and documenting the reproducibility of this
+paper is that not only are many papers in astronomy\supercite{Allen18}
+and other fields still published without providing the full
+empirical data sets and source code under free-software licences,
+but even those that provide free-licensed software and input data
+may be difficult to reproduce\supercite{Ioannidis2009,Chang15,Stodden18}.
+While observational data in cosmology are usually made available online
+with high-quality documentation, often after an embargo period,
+free-licensed software in the field of cosmic topology,
+in particular, library functions
+for defining matched circles in the cosmic microwave background
+or matched \emph{discs} in extragalactic 3-dimensional comoving space\supercite{RK11},
+is only recorded in the scientific literature in papers published by my research group.
+
+To document and help analyse the success and difficulties in reproducing
+scientific results in this context,
+the editors of {\it ReScience C} posed the ``Ten Years Reproducibility
+Challenge'', a request that scientists attempt to
+reproduce the main results of \emph{their own}
+peer-reviewed scientific research papers that had been
+published before 1 January 2010, and document the method and results
+in {\it ReScience C}\supercite{TenYrChallenge20}.
 
 \section{Method}
 
-The first steps planned for trying to reproduce the original results
-were to read the appropriate sections of RBG08.
+\subsection{}
+The first steps for trying to reproduce the original results
+of RBG08 were to (re-)read the appropriate sections of the paper,
+initially taking the view of a non-author.
 \begin{enumerate}
 \item
-  Section 2.1\supercite{RBG08} states that the analysis method of Section 3.2 requires
-  the three files at URLs listed in footnotes 1, 2, 3 on the same page. These files
-  represent two versions of an all-sky map of the Universe mostly representing cosmic microwave background
-  emission at 10{\hGpc} (comoving) from the Earth as observed by
-  the Wilkinson Microwave Anisotropy Probe (WMAP)\supercite{WMAP5Hinshaw}, and
-  the ``kp2'' mask to enable analysis that avoids the most contaminated regions of
-  the sky. These files are downloaded.
+  Section 2.1\supercite{RBG08} states that the analysis method of
+  Section 3.2 requires the three files at URLs listed in footnotes 1,
+  2, 3 on the same page. These files represent two versions of an
+  all-sky map of the Universe mostly representing cosmic microwave
+  background emission at 10{\hGpc} (comoving) from the Earth as
+  observed by the Wilkinson Microwave Anisotropy Probe
+  (WMAP)\supercite{WMAP5Hinshaw}, and the ``kp2'' mask to enable
+  analysis that avoids the most contaminated regions of the sky. These
+  files need to be downloaded.
 \item
-  Footnote 7\supercite{RBG08} indicates that {\sc circles-0.3.2.1}, to be found at
-  the URL \url{http://cosmo.torun.pl/GPLdownload/dodec/}, provides the software
-  for generating the figures and tables. This software is downloaded as
+  Footnote 7\supercite{RBG08} indicates that {\sc circles-0.3.2.1}, to
+  be found at the URL \url{http://cosmo.torun.pl/GPLdownload/dodec/},
+  provides the software for generating the figures and tables. This
+  software needs to downloaded from
   \url{http://cosmo.torun.pl/GPLdownload/dodec/circles-0.3.2.1.tar.gz}.
 \end{enumerate}
 
 The next step was to develop a script on a {\sc git} repository server
-that satisfies the requirements of the international scientific community,
-specifically the International Science Council\supercite{ISCFreedoms}, by
-not blocking access to scientists of any countries or territories.
-As of 2020, several popular {\sc git} repository servers block access to
-scientists and other citizens of several territories\supercite{Github2020}.
+that satisfies the requirements of the international scientific
+community, specifically the International Science
+Council\supercite{ISCFreedoms}, by not blocking access to scientists
+of any countries or territories.  As of 2020, several popular {\sc
+  git} repository servers block access to scientists and other
+residents of several territories\supercite{Github2020}. A shift to
+servers acceptable under international scientific ethical standards is
+underway, but incomplete as of early 2020.
+
+The remaining planned steps were to implement the minimal number of
+updates to make the code work and replicate the original results,
+using modern hardware and a modern software environment. Footnote 7 of
+RBG08 warns that ``These [{\sc circles-0.3.2.1} and {\sc
+    circles-0.3.8}] and earlier versions of the software require
+medium to advanced {\sc GNU/Linux}, {\sc Fortran77} and {\sc C}
+experience for a scientific user.'' There is no statement regarding
+the particular compiler(s) used.  As far as I recall, it's very likely
+that the widely used GNU fortran compiler of the time, {\sc g77}, was
+used together with {\sc gcc}, as selected automatically by {\sc
+  autotool} packages.
+
+The system and hardware chosen for the reproduction project were an
+{\sc AMD} computer running with a {\sc Debian GNU/Linux 9.12} system on an
+{\sc x86\_64 Linux-4.9.0 kernel}.
+The Fortran compiler chosen was {\sc GNU Fortran (Debian
+  6.3.0-18+deb9u1) 6.3.0 20170516}.
 
 
 \begin{table}
@@ -56,12 +114,10 @@ scientists and other citizens of several territories\supercite{Github2020}.
 \section{Results}
 
 The overall script intended to carry out the full sequence of
-downloads, configuring of packages,
-compiling of packages,
-subdirectory user-level installation of packages,
-setting up of calculation parameters, and
-running the main code, was set up as a {\sc bash} script
-{\tt reproduce\_RBG08.sh}.
+downloads, configuring of packages, compiling of packages,
+subdirectory user-level installation of packages, setting up of
+calculation parameters, and running the main code, was set up as a
+{\sc bash} script {\tt reproduce\_RBG08.sh}.
 
 The full package aiming to reproduce the figures and tables listed
 above is provided at \url{https://codeberg.org/boud/0807.4260},
@@ -98,16 +154,16 @@ Fixes needed in order to successfully compile {\sc circles} include:
   A fitting algorithm {\sc gsl\_multifit\_covar} available in GNU
   Scientific Library ({\sc GSL}) versions 1.x was obsoleted; it is no
   longer present in modern 2.x versions of {\sc GSL}. With the aim of
-  reproducing the calculations as close as possible as to the way they
-  were done at the time of the original project, {\sc GSL-1.10} was
-  downloaded and compiled from source.
+  minimising the interventions required in the system, {\sc
+    GSL-1.10} was downloaded and compiled from source, re-creating
+  part of the original software environment.
 \item
   Using the modern {\sc gfortran} compiler options {\tt -fcheck=bounds
     -Wall} to highlight likely sources of bugs due to insufficiently
-  standard coding led to many warnings.
-  Checking of these warnings motivated many fixes that could either
-  solve errors in running the main {\sc circles} package, or reduce
-  the chance of unexpected code errors.
+  standard coding led to many warnings.  Checking of these warnings
+  motivated many fixes that could be expected to either solve errors
+  in running the main {\sc circles} package, or reduce the chance of
+  calculational errors.
 \item
   The autotools {\tt autoreconf} command was run in the main {\sc
     circles-0.3.2.1} directory and its subdirectories.
@@ -116,8 +172,8 @@ Fixes needed in order to successfully compile {\sc circles} include:
   {\sc circles-0.3.2.1} was replaced by a
   download/configure/compile/install section of the main reproduction
   script, since {\sc cosmdist} is now available in an online
-  git repository.
-  some of
+  git repository. The aim was to reduce the chance of {\sc cosmdist}
+  being a blocking factor in reproduction of the calculations.
 \item
   Memory allocation errors that occur for running {\sc circles}
   without previously definining environment variables for key
@@ -125,56 +181,67 @@ Fixes needed in order to successfully compile {\sc circles} include:
     circles-0.3.2.1}. These were most likely not noticed in RBG08
   because of the use of environment variables providing these
   values. Fixes to the front-end C file {\sc circles.c} were
-  made with the attention of avoiding memory allocation errors,
+  made with the intention of avoiding memory allocation errors,
   which are typically reported to the user as segmentation faults.
 \end{enumerate}
 
+\subsection{Dependencies}
+
+The full list of dependencies listed -- not necessarily really used -- in
+the final {\sc gfortran} compile operation that creates the {\sc circles}
+binary executable is:
+{\tt \mbox{\tt -lpgplot} -lpng lcosmdist -lisolat -lastromisc llapack -lcblas
+--lf77blas -latlas lgfortran -lquadmath -lcfitsio -lcosmdist -lgsl
+--lgslcblas -lm -lgcc -lX11 -lm}. \sloppy
 
 \subsection{Running/debugging}
 
-At the time of writing the original paper, I felt that the use of GNU
+At the time of writing the original paper, the aim was that the use of GNU
 tools to provide a free-licensed package configurable and compilable
 with {\tt ./configure \&\& make} and a detailed {\tt ./circles
   -{}-help} command would be sufficient to enable easy reproduction by
-a scientifically competent user. For example, invokin the {\sc
+a scientifically competent user. For example, invoking the {\sc
   circles} help option shows both single-hyphen, one-character options
 and their equivalent double-hyphen, long options, such as
 \mbox{{\tt -i,  -{}-cmb\_file\_raw=FILE cmb fits file of input data}}.
 \sloppy
 
 \fussy
-In addition, I also stored my own private notes of what I intended to
-be most of the significant steps taken in carrying out the project.
-However, in trying to reproduce these steps now, I see that my notes
-are not as complete as they should be. For the purpose of
-reproducibility, I have had to prepare a completely fresh {\sc bash}
-script that verifies the sha512 checksums of input data files and
-software packages that are downloaded from source rather than provided
-within the security context of the host system. This is partly based
-on more recent attempts at reproducibility in my own recent papers in
-which {\sc git} commit hashes of the
-software\supercite{Roukema17silvir} and a {\sc bash} script for
-running the full software\supercite{RO19flatness} were provided.
+My private notes of what were intended to record the most significant steps
+taken in carrying out the project, along with more minor steps, were
+used in the attempted reproduction of RBG08.  However, in trying to
+reproduce these steps now, it is clear that the original notes were
+not as complete and unambiguous as they should be.  For the purpose of
+the current exercise in reproducibility, a completely fresh {\sc bash}
+script was prepared, which verifies the sha512 checksums of input data
+files and software packages that are downloaded from source rather
+than provided within the security context of the host system. The
+style of the new script is partly based on more recent attempts at
+reproducibility in my own recent papers in which {\sc git} commit
+hashes of the software\supercite{Roukema17silvir} and a {\sc bash}
+script for running the full software\supercite{RO19flatness} were
+provided, with some inspiration from the {\sc make}-based reproducibility
+framework\supercite{Akhlaghi15} recently renamed as {\sc maneage}.
 
-This is an example of the problem of ``insider knowledge'' being
+This situation illustrates the problem of ``insider knowledge'' being
 required for the reproducibility of a paper, where ``insider'' also
 includes knowledge that may still be coded in the scientist's brain,
 but not in written form.
 
 A more fundamental problem in terms of coding and software
 environment evolution is that this code uses a C front end and
-a Fortran 77 backend, compiled together using {\sc autoconf}
+a Fortran 77 backend, configured and compiled together using {\sc autoconf}
 tools, in a way that, to the best of my knowledge and that of
 my co-authors, worked correctly in 2008.
 
-The main files are {\tt circles\_f77.f}, named to emphasise its
-expected obsolescence, 2023 lines long; 21 Fortran 77
-source files with 11,616 lines of code in {\tt lib/}; and
-3415 lines of Fortran 77 code in the auxiliary package
-{\tt astromisc/lib/}. For modernisation of this code, a minimum
-approach would be to convert the Fortran 77 to Fortran 2008,
-in which case Fortran--C compatibility conventions are reasonably
-well developed.
+The main files are {\tt circles\_f77.f}, 2023 lines long, named to
+emphasise the expected obsolescence of the Fortran 77 language
+standard; 21 Fortran 77 source files with a total of 11,616 lines of
+code in {\tt lib/}; and 3415 lines of Fortran 77 code in the auxiliary
+package {\tt astromisc/lib/}. For modernisation of this code, a
+minimum approach would be to convert from Fortran 77 to Fortran 2008,
+in which case Fortran--C compatibility conventions that are reasonably well
+developed and implemented by the {\sc gcc/gfortran} family could be used.
 
 For the purposes of this reproducibility test, the required re-coding
 effort would be more than is presently justified. While this is, as
@@ -188,10 +255,10 @@ of the spatial topology of the Universe would be a historically
 important discovery, but whether or not this measurement is feasible
 remains highly speculative. To serve as a basis for long-term
 projects in this particular field, the software would best be
-rewritten according to modern standards of C and/or Fortran and
-benefitting from a decade of improvements in free-licensed geometrical
-software libraries such as {\sc cgal} that could potentially be
-useful.
+rewritten according to modern standards of C and/or Fortran; and
+the best tested, accurate, fast, well-coded free-licensed
+auxiliary libraries, such as {\sc cgal} for geometrical purposes,
+could be used to avoid ``reinventing the wheel''.
 
 Thus, this reproducibility attempt was terminated with
 an untraced bug that is very likely to be memory related. The behaviour
@@ -202,21 +269,43 @@ of the bug (or bugs) is inconsistent, yielding errors such as
 \mbox{{\tt upper bound (2) of 'indir' exceeds string length (-1158212918)}}.
 \sloppy
 
+\section{Discussion}
+
+Compiler evolution and Fortran/C compatibility are key elements of
+difficulties in reproducing RBG08, mostly combined with some coding
+that is not sufficiently robust. In 2008, {\sc g77} was an obvious
+choice of Fortran compiler in the stable distribution of Debian
+GNU/Linux. Since the Debian community already had at the time a solid
+reputation in terms of software security, verification of licensing
+and fully transparent and participatory decision-making, this seemed
+like a wise choice for reproducibility.  The main developer of {\sc
+  g77} had already announced his intention to stop maintaining the
+project in 2001\supercite{Burley01g77}, but even by 2010, two years
+after RBG08 was published, the community remained unclear regarding
+the relationship between {\sc g95}, based on {\sc gcc}, versus
+{\sc gfortran}, part of {\sc gcc}\supercite{Bosscher10g95}.
+
+
 \section{Conclusion}
 
 \fussy
 It is ironical that in the field of cosmic topology, not only are most
-software packages only available privately, with unknown licences, but
-the code that is explicitly public with peer-reviewed published
+software packages only available privately with unknown licences
+(as is the case in astronomy as recently as 2015\supercite{Allen18}),
+but the code that is explicitly public with peer-reviewed published
 results has turned out to be less easy to reproduce than
 expected. This is, unfortunately, consistent with typical reports on
-science research paper reproducibility.  The specific bottleneck
+science research paper reproducibility\supercite{Ioannidis2009,Chang15,Stodden18}.
+The specific bottleneck
 suspected of leading to memory errors in this case was that the effort
 required to update the Fortran 77 files at the heart of the code,
-interfaced with a C front end, risked being too great to be justified
+interfaced with a C front end,
+and compiled with the current {\sc gfortran} compiler from within {\sc gcc}
+rather than with the older, discontinued\supercite{Burley01g77} {\sc g77}
+compiler, risked being too great to be justified
 on any short time scale. While Fortran has remained actively used by
 scientists since more than half a century ago and in its modern
-standards continues to be used actively, and the original {\sc
+standards continue to be used actively, and the original {\sc
   circles} package was prepared using the powerful GNU {\sc
   autotools}, a robust interface and standards for compiling C and
 Fortran code together have only evolved quite recently.
@@ -229,3 +318,11 @@ resulted in confirmation that the source code is
 fully free-licensed, including all libraries and other
 auxiliary software packages, and the input data files
 remain publicly available online.
+
+\section*{Acknowledgments}
+{\footnotesize Part of this research has been supported by
+  the ``A next-generation worldwide quantum sensor network with optical atomic clocks'' project of the TEAM IV programme of the Foundation for Polish Science co-financed by the European Union under the European Regional Development Fund.
+  Part of this research has been supported by
+  the Polish MNiSW grant DIR/WK/2018/12.
+  Part of this research has been supported by
+  the Pozna\'n Supercomputing and Networking Center (PSNC) computational grant 314.}
