@@ -220,8 +220,11 @@ style of the new script is partly based on more recent attempts at
 reproducibility in my own recent papers in which {\sc git} commit
 hashes of the software\supercite{Roukema17silvir} and a {\sc bash}
 script for running the full software\supercite{RO19flatness} were
-provided, with some inspiration from the {\sc make}-based reproducibility
-framework\supercite{Akhlaghi15} recently renamed as {\sc maneage}.
+provided. Some inspiration was taken from the {\sc make}-based reproducibility
+framework\supercite{Akhlaghi15} recently renamed
+{\sc maneage}\supercite{Akhlaghi2020}, but the structure of the
+script is much less modular; it is a simple linear script with a
+few minimal checks.
 
 This situation illustrates the problem of ``insider knowledge'' being
 required for the reproducibility of a paper, where ``insider'' also
@@ -260,7 +263,11 @@ the best tested, accurate, fast, well-coded free-licensed
 auxiliary libraries, such as {\sc cgal} for geometrical purposes,
 could be used to avoid ``reinventing the wheel''.
 
-Thus, this reproducibility attempt was terminated with
+Given that a hurried attempt at a major refactoring of the code would
+not only tend to extend beyond the scope of the aims of the ``Ten
+Years Reproducibility Challenge'', it would also be pointless (a
+systematic upgrade would better be done properly and thoroughly),
+this reproducibility attempt was terminated, leaving it with
 an untraced bug that is very likely to be memory related. The behaviour
 of the bug (or bugs) is inconsistent, yielding errors such as
 \mbox{{\tt Fortran runtime error: Substring out of bounds:}}
@@ -285,13 +292,22 @@ after RBG08 was published, the community remained unclear regarding
 the relationship between {\sc g95}, based on {\sc gcc}, versus
 {\sc gfortran}, part of {\sc gcc}\supercite{Bosscher10g95}.
 
+If a reproducibility framework such as {\sc maneage} had been
+used\supercite{Akhlaghi2020}, it would have been much more likely that full
+reproducibility would have been attained, since {\sc maneage} would,
+in principle, have configured, compiled, and installed all the
+original software environment, including {\sc GSL} and {\sc g77} and
+optionally a contemporaneous version of {\sc gcc}, and would have
+encouraged the original project to be modular enough with sufficiently
+many verification tests to survive a decade of evolution of
+the software environment.
 
 \section{Conclusion}
 
 \fussy
 It is ironical that in the field of cosmic topology, not only are most
 software packages only available privately with unknown licences
-(as is the case in astronomy as recently as 2015\supercite{Allen18}),
+(as tends to be the case in astronomy as recently as 2015\supercite{Allen18}),
 but the code that is explicitly public with peer-reviewed published
 results has turned out to be less easy to reproduce than
 expected. This is, unfortunately, consistent with typical reports on
@@ -305,7 +321,7 @@ rather than with the older, discontinued\supercite{Burley01g77} {\sc g77}
 compiler, risked being too great to be justified
 on any short time scale. While Fortran has remained actively used by
 scientists since more than half a century ago and in its modern
-standards continue to be used actively, and the original {\sc
+standards continues to be used actively, and the original {\sc
   circles} package was prepared using the powerful GNU {\sc
   autotools}, a robust interface and standards for compiling C and
 Fortran code together have only evolved quite recently.
@@ -317,7 +333,10 @@ which in this case is \url{https://codeberg.org/boud/0807.4260},
 resulted in confirmation that the source code is
 fully free-licensed, including all libraries and other
 auxiliary software packages, and the input data files
-remain publicly available online.
+remain publicly available online. Refactoring the code into a
+format such as {\sc maneage}\supercite{Akhlaghi2020} would be a
+potential way forward of shifting the research field towards
+a more completely \emph{open-science} phase.
 
 \section*{Acknowledgments}
 {\footnotesize Part of this research has been supported by
