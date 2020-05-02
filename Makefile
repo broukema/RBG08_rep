@@ -9,7 +9,8 @@
 # should always be the "all" rule, so that "make" and "make all" are identical.
 
 all: article
-article: article.pdf
+article: article.pdf Roukema_ReSciC2020.pdf
+Roukema_ReSciC2020.pdf: article.pdf
 
 
 # CUSTOM BUILD RULES
@@ -28,6 +29,7 @@ metadata.tex: metadata.yaml
 
 article.pdf: article.tex content.tex bibliography.bib metadata.tex rescience.cls
 	latexmk -pdf -pdflatex="xelatex -interaction=nonstopmode" -use-make article.tex
+	cp -pv article.pdf Roukema_ReSciC2020.pdf
 
 clean:
 	@latexmk -CA
