@@ -48,42 +48,89 @@ scientists and other citizens of several territories\supercite{Github2020}.
     afbd67d8120c11e949eb0c414c2775f5 & circles-0.3.2.1.tar.gz \\
     \hline
   \end{tabular}
-  \caption{Checksums (md5sums) of the data and software source code files
-    of RBG08, calculated for the present paper.\protect\label{t-md5sums}}
+  \caption{Checksums (md5sums) of the data and the main software
+    source code files of RBG08, use for the present reproducibility
+    test.\protect\label{t-md5sums}}
 \end{table}
 
 \section{Results}
+
+The overall script intended to carry out the full sequence of
+downloads, configuring of packages,
+compiling of packages,
+subdirectory user-level installation of packages,
+setting up of calculation parameters, and
+running the main code, was set up as a {\sc bash} script
+{\tt reproduce\_RBG08.sh}.
+
+The full package aiming to reproduce the figures and tables listed
+above is provided at \url{https://codeberg.org/boud/0807.4260},
+named after the ArXiv identity of RBG08.
 
 \subsection{Downloading data and software source code}
 
 \begin{enumerate}
 \item
-  The URL in footnotes 1, 2 and 3\supercite{RBG08} gave clickable links that were split into
-  two and not correctly clickable. The user needs to cut/paste the two halves of each URL
-  in order to obtain the three data files. The data files were downloaded with no apparent
+  The URL in footnotes 1, 2 and 3\supercite{RBG08} gave clickable
+  links that were split into two and not correctly clickable. The user
+  needs to cut/paste the two halves of each URL in order to obtain the
+  three data files. The data files were downloaded with no apparent
   problem, with md5sums as indicated in Table~\ref{t-md5sums}.
 \item
-  The file {\sc circles-0.3.2.1.tar.gz} with the md5sum indicated in Table~\ref{t-md5sums} was
-  downloaded.
+  The file {\sc circles-0.3.2.1.tar.gz} with the md5sum indicated in
+  Table~\ref{t-md5sums} was downloaded. It was included in
+  the main git repository in its original form. Subsequent changes
+  are recorded in the git history at
+  \url{https://codeberg.org/boud/0807.4260}.
 \end{enumerate}
 
-\subsection{Compiling}
+\subsection{Compiling/debugging}
 
 Fixes needed in order to successfully compile {\sc circles} include:
 \begin{enumerate}
 \item
-  A Fortran 77 line that ended on one line with a $+$ symbol and started on the next line with
-  another $+$ symbol (within the valid columns for standard Fortran 77) was apparently accepted
-  by the {\sc gcc} family fortran compiler in 2008, but not now (2020). One of the $+$ symbols
-  was removed.
+  A Fortran 77 line that ended on one line with a $+$ symbol and
+  started on the next line with another $+$ symbol (within the valid
+  columns for standard Fortran 77) was apparently accepted by the {\sc
+    gcc} family fortran compiler in 2008, but not now (2020). One of
+  the $+$ symbols was removed.
 \item
-  A fitting algorithm {\sc gsl\_multifit\_covar} available in GNU Scientific Library ({\sc GSL})
-  versions 1.x was obsoleted; it is no longer present in modern 2.x versions of {\sc GSL}. With
-  the aim of reproducing the calculations as close as possible as to the way they were done
-  at the time of the original project, {\sc GSL-1.10} was downloaded and compiled from source.
+  A fitting algorithm {\sc gsl\_multifit\_covar} available in GNU
+  Scientific Library ({\sc GSL}) versions 1.x was obsoleted; it is no
+  longer present in modern 2.x versions of {\sc GSL}. With the aim of
+  reproducing the calculations as close as possible as to the way they
+  were done at the time of the original project, {\sc GSL-1.10} was
+  downloaded and compiled from source.
+\item
+  Using the modern {\sc gfortran} compiler options {\tt -fcheck=bounds
+    -Wall} to highlight likely sources of bugs due to insufficiently
+  standard coding led to many warnings.
+  Checking of these warnings motivated many fixes that could either
+  solve errors in running the main {\sc circles} package, or reduce
+  the chance of unexpected code errors.
+\item
+  The autotools {\tt autoreconf} command was run in the main {\sc
+    circles-0.3.2.1} directory and its subdirectories.
+\item
+  The {\sc cosmdist} package provided by default in a subdirectory of
+  {\sc circles-0.3.2.1} was replaced by a
+  download/configure/compile/install section of the main reproduction
+  script, since {\sc cosmdist} is now available in an online
+  git repository.
+  some of
+\item
+  Memory allocation errors that occur for running {\sc circles}
+  without previously definining environment variables for key
+  values such as input filenames are present in {\sc
+    circles-0.3.2.1}. These were most likely not noticed in RBG08
+  because of the use of environment variables providing these
+  values. Fixes to the front-end C file {\sc circles.c} were
+  made with the attention of avoiding memory allocation errors,
+  which are typically reported to the user as segmentation faults.
 \end{enumerate}
 
-\subsection{Running}
+
+\subsection{Running/debugging}
 
 At the time of writing the original paper, I felt that the use of GNU
 tools to provide a free-licensed package configurable and compilable
@@ -114,8 +161,71 @@ required for the reproducibility of a paper, where ``insider'' also
 includes knowledge that may still be coded in the scientist's brain,
 but not in written form.
 
+A more fundamental problem in terms of coding and software
+environment evolution is that this code uses a C front end and
+a Fortran 77 backend, compiled together using {\sc autoconf}
+tools, in a way that, to the best of my knowledge and that of
+my co-authors, worked correctly in 2008.
 
-\begin{enumerate}
-\item
-  TODO...
-\end{enumerate}
+The main files are {\tt circles\_f77.f}, named to emphasise its
+expected obsolescence, 2023 lines long; 21 Fortran 77
+source files with 11,616 lines of code in {\tt lib/}; and
+3415 lines of Fortran 77 code in the auxiliary package
+{\tt astromisc/lib/}. For modernisation of this code, a minimum
+approach would be to convert the Fortran 77 to Fortran 2008,
+in which case Fortran--C compatibility conventions are reasonably
+well developed.
+
+For the purposes of this reproducibility test, the required re-coding
+effort would be more than is presently justified. While this is, as
+far as I know, the only free-licensed code for identified-circles
+matching for the purposes of cosmic topology analysis for which
+peer-reviewed research has been published, the techniques developed in
+codes that are not publicly available under either free or non-free
+licences have developed considerably since 2008.  Moreover, the
+research field is extremely high risk: an observational confirmation
+of the spatial topology of the Universe would be a historically
+important discovery, but whether or not this measurement is feasible
+remains highly speculative. To serve as a basis for long-term
+projects in this particular field, the software would best be
+rewritten according to modern standards of C and/or Fortran and
+benefitting from a decade of improvements in free-licensed geometrical
+software libraries such as {\sc cgal} that could potentially be
+useful.
+
+Thus, this reproducibility attempt was terminated with
+an untraced bug that is very likely to be memory related. The behaviour
+of the bug (or bugs) is inconsistent, yielding errors such as
+\mbox{{\tt Fortran runtime error: Substring out of bounds:}}
+\mbox{{\tt upper bound (7) of 'bin\_format' exceeds string length (4)}} or
+\mbox{{\tt Fortran runtime error: Substring out of bounds:}}
+\mbox{{\tt upper bound (2) of 'indir' exceeds string length (-1158212918)}}.
+\sloppy
+
+\section{Conclusion}
+
+\fussy
+It is ironical that in the field of cosmic topology, not only are most
+software packages only available privately, with unknown licences, but
+the code that is explicitly public with peer-reviewed published
+results has turned out to be less easy to reproduce than
+expected. This is, unfortunately, consistent with typical reports on
+science research paper reproducibility.  The specific bottleneck
+suspected of leading to memory errors in this case was that the effort
+required to update the Fortran 77 files at the heart of the code,
+interfaced with a C front end, risked being too great to be justified
+on any short time scale. While Fortran has remained actively used by
+scientists since more than half a century ago and in its modern
+standards continues to be used actively, and the original {\sc
+  circles} package was prepared using the powerful GNU {\sc
+  autotools}, a robust interface and standards for compiling C and
+Fortran code together have only evolved quite recently.
+
+While the results of the paper are not as reproducible as they
+appeared to be, the requirement of the Ten Years Challenge
+for the code to be placed in an online git repository,
+which in this case is \url{https://codeberg.org/boud/0807.4260},
+resulted in confirmation that the source code is
+fully free-licensed, including all libraries and other
+auxiliary software packages, and the input data files
+remain publicly available online.
