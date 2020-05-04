@@ -16,7 +16,8 @@ Roukema_ReSciC2020.pdf: article.pdf
 # CUSTOM BUILD RULES
 # -----------------------------------------------------------------------------
 metadata.tex: metadata.yaml
-	./yaml-to-latex.py -i $< -o $@
+	./yaml-to-latex.py -i $< -o metadata.tex.tmp \
+	  && sed -e 's,%26,\\%26,g' metadata.tex.tmp > $@
 
 
 # MAIN LATEXMK RULE

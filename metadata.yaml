@@ -38,18 +38,18 @@ keywords: rescience c, fortran, cosmology
 code:
   - url: https://codeberg.org/boud/0807.4260
   - doi:
-  - swh:
+  - swh: https://archive.softwareheritage.org/browse/origin/https://codeberg.org/boud/0807.4260
 
 # Data URL and DOI (optional if no data)
 data:
-  - url:
+  - url: https://lambda.gsfc.nasa.gov/data/map/dr3/dfp/wmap_ilc_5yr_v3.fits
   - doi:
 
 # Information about the original article that has been replicated
 replication:
  - cite: Roukema, B. F.; Buliński, Z.; Gaudin, N. E., 2008, Poincaré dodecahedral space parameter estimates, Astronomy and Astrophysics, 492, 657-673 # Full textual citation
  - bib: RBG08 # Bibtex key (if any) in your bibliography file
- - url: https://ui.adsabs.harvard.edu/link_gateway/2008A\%26A...492..657R/PUB_PDF # URL to the PDF, try to link to a non-paywall version
+ - url: https://ui.adsabs.harvard.edu/link_gateway/2008A%26A...492..657R/PUB_PDF # URL to the PDF, try to link to a non-paywall version
  - doi: 10.1051/0004-6361:200810685 # Regular digital object identifier
 
 # Don't forget to surround abstract with double quotes
@@ -83,7 +83,8 @@ bibliography: RBG08_rep.bib
 #  * Editorial
 #  * Letter
 #  * Replication
-type: Replication
+#  * Reproduction
+type: Reproduction
 
 # Scientific domain of the article (e.g. Computational Neuroscience)
 #  (one domain only & try to be not overly specific)
@@ -91,6 +92,7 @@ domain: astronomy
 
 # Coding language (main one only if several)
 language: fortran
+
 
 # To be filled by the author(s) after acceptance
 # -----------------------------------------------------------------------------
