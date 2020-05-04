@@ -268,18 +268,13 @@ not only tend to extend beyond the scope of the aims of the ``Ten
 Years Reproducibility Challenge'', it would also be pointless (a
 systematic upgrade would better be done properly and thoroughly),
 this reproducibility attempt was terminated, leaving it with
-an untraced bug that is very likely to be memory related. The behaviour
-of the bug (or bugs) is inconsistent, yielding errors such as
-\mbox{{\tt Fortran runtime error: Substring out of bounds:}}
-\mbox{{\tt upper bound (7) of 'bin\_format' exceeds string length (4)}} or
-\mbox{{\tt Fortran runtime error: Substring out of bounds:}}
-\mbox{{\tt upper bound (2) of 'indir' exceeds string length (-1158212918)}}.
+an untraced Fortran--C interfacing memory bug.
 \sloppy
 
 \section{Discussion}
 
 Compiler evolution and Fortran/C compatibility are key elements of
-difficulties in reproducing RBG08, mostly combined with some coding
+difficulties in reproducing RBG08, combined with some coding
 that is not sufficiently robust. In 2008, {\sc g77} was an obvious
 choice of Fortran compiler in the stable distribution of Debian
 GNU/Linux. Since the Debian community already had at the time a solid
@@ -292,15 +287,35 @@ after RBG08 was published, the community remained unclear regarding
 the relationship between {\sc g95}, based on {\sc gcc}, versus
 {\sc gfortran}, part of {\sc gcc}\supercite{Bosscher10g95}.
 
-If a reproducibility framework such as {\sc maneage} had been
-used\supercite{Akhlaghi2020}, it would have been much more likely that full
-reproducibility would have been attained, since {\sc maneage} would,
-in principle, have configured, compiled, and installed all the
-original software environment, including {\sc GSL} and {\sc g77} and
-optionally a contemporaneous version of {\sc gcc}, and would have
-encouraged the original project to be modular enough with sufficiently
-many verification tests to survive a decade of evolution of
-the software environment.
+Nevertheless, also by 2010, {\sc gcc} already claimed to implement
+compatibility between Fortran 2003 (ISO/IEC 1539-1:2004(E)) and ISO
+C99 (ISO/IEC 9899:1999)\supercite{GCCISOFortranC}, implemented at the
+coding level by {\tt use ISO\_C\_BINDING} and {\tt bind(C, ...)}
+declarations and the ability to declare C types in a Fortran module.
+
+An interesting question is whether a reproducibility framework such as
+{\sc maneage}\supercite{Akhlaghi2020}, which aims at a very high
+standard of reproducibility with maximum modularity and minimal
+dependencies, would have enabled easy reproducibility of the original
+project.  The {\sc maneage} system would, in principle, have
+configured, compiled, and installed all the original software
+environment, including {\sc GSL} and {\sc g77} and a contemporaneous
+version of {\sc gcc}, and would have encouraged the original project
+to be modular enough with sufficiently many verification tests to
+survive a decade of evolution of the software environment.  A key
+question would be whether a more modern version of {\sc gcc} could
+have compiled the old versions of {\sc g77} and {\sc gcc}.
+It is quite realistic to expect that a {\sc maneage} reproduction
+of RBG08 would succeed more than the {\sc bash} script method
+provided in this project.
+
+Would this project have been more easily reproducible had it been
+written in a higher level language, such as python? The question
+did not really arise at the time, since as is stated in the abstract
+of RBG08, one of the key results was a speed-up in computation
+time, a critical bottleneck for this type of research, in which
+case the computational overhead of higher level languages renders
+them impractical.
 
 \section{Conclusion}
 
@@ -324,9 +339,9 @@ scientists since more than half a century ago and in its modern
 standards continues to be used actively, and the original {\sc
   circles} package was prepared using the powerful GNU {\sc
   autotools}, a robust interface and standards for compiling C and
-Fortran code together have only evolved quite recently.
+Fortran code together have only evolved quite recently\supercite{GCCISOFortranC}.
 
-While the results of the paper are not as reproducible as they
+While the results of the paper are not as trivially reproducible as they
 appeared to be, the requirement of the Ten Years Challenge
 for the code to be placed in an online git repository,
 which in this case is \url{https://codeberg.org/boud/0807.4260},
@@ -334,7 +349,7 @@ resulted in confirmation that the source code is
 fully free-licensed, including all libraries and other
 auxiliary software packages, and the input data files
 remain publicly available online. Refactoring the code into a
-format such as {\sc maneage}\supercite{Akhlaghi2020} would be a
+format such as {\sc maneage}\supercite{Akhlaghi15,Akhlaghi2020} would be a
 potential way forward of shifting the research field towards
 a more completely \emph{open-science} phase.
 

@@ -310,7 +310,7 @@
   mincitenames=1,
   maxbibnames=10,
   isbn = false,
-  url = false,
+  url = true,
   doi = false,
   autocite = superscript,
   natbib = true]{biblatex}
