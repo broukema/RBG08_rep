@@ -71,11 +71,22 @@ The next step was to develop a script on a {\sc git} repository server
 that satisfies the requirements of the international scientific
 community, specifically the International Science
 Council\supercite{ISCFreedoms}, by not blocking access to scientists
-of any countries or territories.  As of 2020, several popular {\sc
-  git} repository servers block access to scientists and other
-residents of several territories\supercite{Github2020}. A shift to
-servers acceptable under international scientific ethical standards is
-underway, but incomplete as of early 2020.
+of any countries or territories.  During 2018 and 2019, several of the
+most popular {\sc git} repository servers blocked access to scientists
+and other residents of several countries and territories
+(Github\supercite{Github2020ToS,TechCrunch2019github,Zdnet2019github},
+Bitbucket\supercite{Atlassian2019bitbucket},
+Gitlab\supercite{Gitlab2018ban}; the {\sc gitlab} software is free-licensed
+and can be installed independently of the Gitlab online service).
+The bans have presumably continued into 2020.
+A shift of my own software to servers acceptable under international
+scientific ethical standards is underway, but incomplete as of early
+2020. I chose a community-based server, {\em Codeberg}, not currently listed
+on the Wikipedia list of source code hosting
+facilities\footnote{\url{https://en.wikipedia.org/wiki/Comparison_of_source-code-hosting_facilities}}.
+In 2019, the {\em Investigating \& Archiving the Scholarly Git Experience} project team
+expressed its concerns about the bans, describing them as having ``far-reaching and chilling consequences
+for open source, open scholarship, and for the open exchange of information and ideas''\supercite{IASGE2019}.
 
 The remaining planned steps were to implement the minimal number of
 updates to make the code work and replicate the original results,
@@ -260,6 +271,10 @@ package {\tt astromisc/lib/}. For modernisation of this code, a
 minimum approach would be to convert from Fortran 77 to Fortran 2008,
 in which case Fortran--C compatibility conventions that are reasonably well
 developed and implemented by the {\sc gcc/gfortran} family could be used.
+Alternatively, {\sc f2c}, which continues to be available in distributions
+such as Debian GNU/Linux, could be used to convert the Fortran code into C.
+Any remaining bugs in the interfacing would be solvable within the standard
+requirements of C, bypassing the issue of interlanguage communication.
 
 For the purposes of this reproducibility test, the required re-coding
 effort would be more than is presently justified. While this is, as
@@ -408,7 +423,9 @@ the software and completing the reproduction of the original results
 is welcome to contact the author of this paper.
 
 \section*{Acknowledgments}
-{\footnotesize Part of this research has been supported by the ``A
+{\footnotesize Thank you to Konrad Hinsen (the reviewer) and James
+  Craig Burley for several helpful comments.
+  Part of this research has been supported by the ``A
   next-generation worldwide quantum sensor network with optical atomic
   clocks'' project of the TEAM IV programme of the Foundation for
   Polish Science co-financed by the European Union under the European
