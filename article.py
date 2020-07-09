@@ -16,7 +16,7 @@ class Contributor:
 
     def get_abbrvname(self, name):
         if not name: return ""
-
+        
         if ',' in name:
             lastname = name.split(",")[0]
             firstnames = name.split(",")[1].strip().split(" ")
@@ -45,7 +45,7 @@ class Contributor:
             lastname = name.split(" ")[-1]
             firstname = name.split(" ")[:-1]
         return lastname
-
+    
 
 class Affiliation:
     def __init__(self, code, name, address=""):
@@ -99,7 +99,7 @@ class Date:
     def __repr__(self):
         return self.textual
         # return self.date.strftime("%d %B %Y")
-
+        
 
 class Article:
     def __init__(self, data):
@@ -120,13 +120,12 @@ class Article:
 
         self.review = ""
         self.replication = ""
-
-        self.date_drafted = ""
+        
         self.date_received = ""
         self.date_accepted = ""
         self.date_published = ""
 
-        self.journal_name = ""
+        self.journal_name = "" 
         self.journal_issn = ""
         self.journal_volume = ""
         self.journal_issue = ""
@@ -140,7 +139,7 @@ class Article:
         self.authors_short = "" # Family names only
         self.authors_abbrv = "" # Abbreviated firsnames + Family names
         self.authors_full = ""  # Full names
-
+        
         n = len(self.authors)
         if n > 3:
             self.authors_short = self.authors[0].lastname + " et al."
@@ -166,10 +165,10 @@ class Article:
                 self.authors_full += self.authors[n-2].fullname + " and "
                 self.authors_full += self.authors[n-1].fullname
 
-
-
+            
+        
     def parse(self, data):
-        document = yaml.load(data)
+        document = yaml.load(data, Loader=yaml.SafeLoader)
 
         self.title = document.get("title", "")
         self.abstract = document.get("abstract","") or ""
@@ -182,11 +181,10 @@ class Article:
         # Miscellaneous dates
         dates = {key:value for data in document["dates"]
                            for key, value in data.items()}
-        self.date_drafted = Date(dates["drafted"] or "")
         self.date_received = Date(dates["received"] or "")
         self.date_accepted = Date(dates["accepted"] or "")
         self.date_published = Date(dates["published"] or "")
-
+        
         # Add authors
         for item in document["authors"]:
             role = "author"
@@ -208,7 +206,7 @@ class Article:
                     affiliations = list(str(item["affiliations"]))
                     author = Contributor(role, name, orcid, email, affiliations)
                     self.add_contributor(author)
-
+                
 
         # Add author affiliations
         for item in document["affiliations"]:
@@ -217,7 +215,7 @@ class Article:
                             item["name"],
                             item.get("address", "")))
 
-
+    
         # Add editor & reviewers
         for item in document["contributors"]:
             role = item["role"]
@@ -226,7 +224,7 @@ class Article:
             contributor = Contributor(role, name, orcid)
             self.add_contributor(contributor)
 
-
+            
         # Code repository (mandatory)
         if "code" in document.keys():
             code = {key:value for data in document["code"]
@@ -237,7 +235,7 @@ class Article:
                                    code.get("swh","") or "")
         else:
             raise IndexError("Code repository not found")
-
+        
         # Data repository (optional)
         if "data" in document.keys():
             data = {key:value for data in document["data"]
@@ -247,7 +245,7 @@ class Article:
                                    data.get("doi","") or "")
         else:
             self.data = Repository("data", "", "")
-
+            
         # Review
         review = {key:value for review in document["review"]
                             for key, value in review.items()}
@@ -276,8 +274,8 @@ class Article:
         self.journal_issn = str(journal.get("issn", ""))
         self.journal_volume = journal["volume"] or ""
         self.journal_issue = journal["issue"] or ""
-
-
+        
+                    
     def add_contributor(self, contributor):
         if contributor.role == "author":
             self.authors.append(contributor)
