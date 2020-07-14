@@ -29,7 +29,7 @@ affiliations:
 
 
 # List of keywords (adding the programming language might be a good idea)
-keywords: rescience c, fortran, cosmology
+keywords: fortran, cosmology
 
 # Code URL and DOI/SWH (url is mandatory for replication, doi after acceptance)
 # You can get a DOI for your code from Zenodo, or an SWH identifier from
@@ -38,7 +38,7 @@ keywords: rescience c, fortran, cosmology
 code:
   - url: https://codeberg.org/boud/0807.4260
   - doi:
-  - swh: https://archive.softwareheritage.org/browse/origin/https://codeberg.org/boud/0807.4260
+  - swh: swh:1:dir:4f1fe8cf5a01bb4637e31ea938eaa5bc25a2b87b
 
 # Data URL and DOI (optional if no data)
 data:
@@ -88,7 +88,7 @@ type: Reproduction
 
 # Scientific domain of the article (e.g. Computational Neuroscience)
 #  (one domain only & try to be not overly specific)
-domain: astronomy
+domain: Astronomy
 
 # Coding language (main one only if several)
 language: fortran
@@ -99,14 +99,14 @@ language: fortran
 
 # For example, the URL of the GitHub issue where review actually occured
 review:
-  - url:
+  - url: https://github.com/ReScience/submissions/issues/41
 
 contributors:
-  - name:
-    orcid:
+  - name: Pierre de Buyl
+    orcid: 0000-0002-6640-6463
     role: editor
-  - name:
-    orcid:
+  - name: Konrad Hinsen
+    orcid: 0000-0003-0330-9428
     role: reviewer
   - name:
     orcid:
@@ -114,20 +114,19 @@ contributors:
 
 # This information will be provided by the editor (except for "drafted", which should be blanked before submission)
 dates:
-  - drafted:
-  - received:
-  - accepted:
-  - published:
+  - received: May 5, 2020
+  - accepted: June 30, 2020
+  - published: July 14, 2020
 
 # This information will be provided by the editor
 article:
-  - number: # Article number will be automatically assigned during publication
-  - doi:    # DOI from Zenodo
-  - url:    # Final PDF URL (Zenodo or rescience website?)
+  - number: 11 # Article number will be automatically assigned during publication
+  - doi: 10.5281/zenodo.3943750   # DOI from Zenodo
+  - url: https://zenodo.org/record/3943750/files/Roukema_ReSciC2020.pdf   # Final PDF URL (Zenodo or rescience website?)
 
 # This information will be provided by the editor
 journal:
   - name:   "ReScience C"
   - issn:   2430-3658
-  - volume: 4
+  - volume: 6
   - issue:  1
