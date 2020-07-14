@@ -311,6 +311,11 @@
 \addbibresource{\articleBIBLIOGRAPHY}
 \renewcommand{\citet}[1]{\citeauthor{#1}\supercite{#1}}
 
+\newbibmacro{string+doi}[1]{%
+  \iffieldundef{doi}{#1}{\href{http://dx.doi.org/\thefield{doi}}{#1}}}
+\DeclareFieldFormat{title}{\usebibmacro{string+doi}{\mkbibemph{#1}}}
+\DeclareFieldFormat[article]{title}{\usebibmacro{string+doi}{\mkbibquote{#1}}}
+
 % --- Copyright statement -----------------------------------------------------
 \RequirePackage{float}
 \floatstyle{plain}
