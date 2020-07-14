@@ -4,7 +4,7 @@
 %% Released under a Creative Commons Attribution 4.0 International license.
 %% ----------------------------------------------------------------------------
 %% Dependencies:
-%%  * metadata.tex
+%%  * metadata.tex 
 %%  * header.tex
 %%  * content.tex
 %% ----------------------------------------------------------------------------
@@ -78,13 +78,13 @@
   Path = ./roboto/RobotoCondensed-, Extension = .ttf,
   UprightFont = Regular,
   BoldFont = Bold
-]
+]  
 
 \newfontfamily\Roboto{Roboto}[
   Path = ./roboto/Roboto-, Extension = .ttf,
   UprightFont = Regular,
   BoldFont = Black
-]
+]  
 
 \newfontfamily\SpaceRoboto{Roboto}[
   Path = ./roboto/Roboto-, Extension = .ttf,
@@ -92,7 +92,7 @@
   BoldFont = Medium,
   UprightFeatures={LetterSpace=35},
   BoldFeatures={LetterSpace=35}
-]
+]  
 
 
 \RequirePackage{microtype}
@@ -115,12 +115,12 @@
 %%             {\Large\sffamily\bfseries}{\thesection}{0.25em}{}
 %% \titleformat{\subsection}
 %%             {\large\sffamily\bfseries}{\thesection}{0.25em}{}
-
+            
 \titleformat{\section}{\Large\sffamily\bfseries}
             {\llap{{\textcolor{lightgray}{\normalfont\sffamily\thesection}}\hskip 0.5em}}{0em}{}
 \titleformat{\subsection}{\large\sffamily\bfseries}
      {\llap{{\textcolor{lightgray}{\normalfont\sffamily\thesubsection}}\hskip 0.5em}}{0em}{}
-
+     
 \titleformat{\subsubsection}[runin]
             {\normalfont\sffamily\bfseries}{}{0em}{}[\mbox{ --- }]
 \titlespacing{\subsubsection}
@@ -230,7 +230,7 @@
 % --- Various convenient macros -----------------------------------------------
 \RequirePackage[many]{tcolorbox}
 \newtcbox{\iconbox}[1][]{%
-  enhanced,nobeforeafter,tcbox raise base,
+  enhanced,nobeforeafter,tcbox raise base, 
   boxrule=0.4pt, top=0pt, bottom=-1pt,
   right=.1pt, left=.1pt, arc=1pt, boxsep=1pt,
   fontupper={\tiny \sffamily}, before upper={\vphantom{dlg}},
@@ -241,22 +241,22 @@
 
 % See https://tex.stackexchange.com/questions/99316/symbol-for-external-links
 \newcommand{\ExternalLink}{%
-    \tikz[x=1.2ex, y=1.2ex, baseline=-0.05ex]{%
+    \tikz[x=1.2ex, y=1.2ex, baseline=-0.05ex]{% 
         \begin{scope}[x=1ex, y=1ex]
-            \clip (-0.1,-0.1)
-                --++ (-0, 1.2)
-                --++ (0.6, 0)
-                --++ (0, -0.6)
-                --++ (0.6, 0)
+            \clip (-0.1,-0.1) 
+                --++ (-0, 1.2) 
+                --++ (0.6, 0) 
+                --++ (0, -0.6) 
+                --++ (0.6, 0) 
                 --++ (0, -1);
-            \path[draw,
-                line width = 0.5,
-                rounded corners=0.5]
+            \path[draw, 
+                line width = 0.5, 
+                rounded corners=0.5] 
                 (0,0) rectangle (1,1);
         \end{scope}
-        \path[draw, line width = 0.5] (0.5, 0.5)
+        \path[draw, line width = 0.5] (0.5, 0.5) 
             -- (1, 1);
-        \path[draw, line width = 0.5] (0.6, 1)
+        \path[draw, line width = 0.5] (0.6, 1) 
             -- (1, 1) -- (1, 0.6);
         }
     }
@@ -276,19 +276,10 @@
 \chead{}
 \rhead{\scriptsize \sffamily \bfseries
   \ifdefempty{\articleDOI}{
-    %% if there is no DOI, then see if this is a draft
-    \ifdefempty{\dateDRAFTED}{
-      % no DOI, but UNDER REVIEW (no longer just a draft)
-      \fbox{UNDER REVIEW}
-    }{
-      % no DOI, and still only a draft
-      \fbox{DRAFT}
-    }
-  }{
-    % there is a DOI - no extra fbox is needed
-    \relax
-  }
+    % UNDER REVIEW
+    \fbox{UNDER REVIEW}
     %\fcolorbox{lightgray}{lightgray}{\textcolor{white}{UNDER REVIEW}}
+  }
 }
 \renewcommand{\footrulewidth}{0.0pt}
 \lfoot{\scriptsize \sffamily
@@ -310,7 +301,7 @@
   mincitenames=1,
   maxbibnames=10,
   isbn = false,
-  url = true,
+  url = false,
   doi = false,
   autocite = superscript,
   natbib = true]{biblatex}
@@ -319,7 +310,6 @@
 \renewcommand*{\bibfont}{\small \sffamily}
 \addbibresource{\articleBIBLIOGRAPHY}
 \renewcommand{\citet}[1]{\citeauthor{#1}\supercite{#1}}
-
 
 % --- Copyright statement -----------------------------------------------------
 \RequirePackage{float}
