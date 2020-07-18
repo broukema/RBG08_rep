@@ -8,6 +8,11 @@
 %%  * header.tex
 %%  * content.tex
 %% ----------------------------------------------------------------------------
+%% 2020-07-18 B. Roukema - Change DOI links in references to open access DOI oadoi.org;
+%%                       - Insert \sloppy option for references;
+%%                       - Make URL texts copy/pastable by redefining \nolinkurl;
+%%                       - Remove space from eprint identifers.
+%% ----------------------------------------------------------------------------
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{rescience}[2019/04/12 Style for ReScience articles]
@@ -236,7 +241,7 @@
   fontupper={\tiny \sffamily}, before upper={\vphantom{dlg}},
   colframe=white, colback=black!10!white, coltext=black}
 \newcommand{\orcid}[1]{\href{https://orcid.org/#1}{\iconbox{ID}}}
-\newcommand{\doi}[1]{\href{http://doi.org/#1}{#1}}
+\newcommand{\doi}[1]{\href{http://oadoi.org/#1}{#1}}
 \newcommand{\github}[1]{\href{https://github.com/#1}{github.com/#1}}
 
 % See https://tex.stackexchange.com/questions/99316/symbol-for-external-links
@@ -301,8 +306,8 @@
   mincitenames=1,
   maxbibnames=10,
   isbn = false,
-  url = false,
-  doi = false,
+  url = true,
+  doi = true,
   autocite = superscript,
   natbib = true]{biblatex}
 \RequirePackage{bibentry}
@@ -311,10 +316,54 @@
 \addbibresource{\articleBIBLIOGRAPHY}
 \renewcommand{\citet}[1]{\citeauthor{#1}\supercite{#1}}
 
-\newbibmacro{string+doi}[1]{%
-  \iffieldundef{doi}{#1}{\href{http://dx.doi.org/\thefield{doi}}{#1}}}
-\DeclareFieldFormat{title}{\usebibmacro{string+doi}{\mkbibemph{#1}}}
-\DeclareFieldFormat[article]{title}{\usebibmacro{string+doi}{\mkbibquote{#1}}}
+%Example for clickable title:
+%\newbibmacro{string+doi}[1]{%
+%  \iffieldundef{doi}{#1}{\href{https://oadoi.org/\thefield{doi}}{#1}}}
+%\DeclareFieldFormat{title}{\usebibmacro{string+doi}{\mkbibemph{#1}}}
+%\DeclareFieldFormat[article]{title}{\usebibmacro{string+doi}{\mkbibquote{#1}}}
+
+%% The https://oadoi.org domain chooses open-access versions of an
+%% article, preferring publisher versions (gold open access) if
+%% possible, otherwise preprints (green open access), and only falls
+%% back to the paywalled version if nothing open-access (gold or
+%% green) is available. We print the DOI as text to make sure that
+%% it's accessible in printed version and to robots that only analyse
+%% the printed text.
+\DeclareFieldFormat{doi}{%
+  \mkbibacro{DOI}\addcolon\space
+  \ifhyperref
+    {\href{https://oadoi.org/#1}{\nolinkurl{#1}}}
+    {\nolinkurl{#1}}}
+
+%% Add \sloppy because DOIs are quite often long.
+\appto{\bibsetup}{\sloppy}
+
+%% We want URLs to be copy/pastable; the default version of \nolinkurl
+%% seems to not just make the URLs unlinked, but also inserts spaces
+%% inside the URL, making any copy/pasted version unusable without
+%% human intervention.
+\renewcommand\nolinkurl[1]{#1}
+
+
+%% Redefine ArXiv eprint format without a space. This is required
+%% for ArXiv identifiers so that robots analysing the rendered pdf
+%% text will correctly link to the identifiers. See
+%% https://arxiv.org/help/arxiv_identifier . This is from biblatex.def,
+%% but with \space removed.
+\DeclareFieldFormat{eprint:arxiv}{%
+  arXiv\addcolon
+  \ifhyperref
+    {\href{http://arxiv.org/abs/#1}{%
+       \nolinkurl{#1}%
+       \iffieldundef{eprintclass}
+         {}
+         {\addspace\texttt{\mkbibbrackets{\thefield{eprintclass}}}}}}
+    {\nolinkurl{#1}
+     \iffieldundef{eprintclass}
+       {}
+       {\addspace\texttt{\mkbibbrackets{\thefield{eprintclass}}}}}}
+\DeclareFieldAlias{eprint:arXiv}{eprint:arxiv}
+
 
 % --- Copyright statement -----------------------------------------------------
 \RequirePackage{float}
