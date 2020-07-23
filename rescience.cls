@@ -4,7 +4,7 @@
 %% Released under a Creative Commons Attribution 4.0 International license.
 %% ----------------------------------------------------------------------------
 %% Dependencies:
-%%  * metadata.tex 
+%%  * metadata.tex
 %%  * header.tex
 %%  * content.tex
 %% ----------------------------------------------------------------------------
@@ -50,54 +50,55 @@
 % --- Font stack --------------------------------------------------------------
 
 %% PDFLaTeX
-%% \RequirePackage[light,condensed]{roboto} % Sans Serif
-%% \RequirePackage[default,light,semibold,tabular]{sourceserifpro} % Roman
-%% \RequirePackage[varqu]{zi4} % Monotype
-%% \makeatletter
-%% \def\bfseries@sf{sb}
-%% \makeatother
+ \RequirePackage[light,condensed]{roboto} % Sans Serif
+ \RequirePackage[default,light,semibold,tabular]{sourceserifpro} % Roman
+ \RequirePackage[varqu]{zi4} % Monotype
+ \makeatletter
+ \def\bfseries@sf{sb}
+ \makeatother
+
 
 % XeLaTeX
-\RequirePackage{fontspec}
-\defaultfontfeatures{Ligatures=TeX}
-\setmainfont{Source Serif Pro}[
-  Path = ./source-serif-pro/SourceSerifPro-, Extension = .otf,
-  UprightFont= Light,
-  ItalicFont = LightIt,
-  BoldFont   = Regular,
-  BoldItalicFont = It,
-]
-\setsansfont{Roboto Condensed}[
-  Path = ./roboto/RobotoCondensed-, Extension = .ttf,
-  UprightFont = Light,
-  BoldFont = Regular
-]
-
-\setmonofont{Source Code Pro}[
-  Path = ./source-code-pro/SourceCodePro-, Extension = .otf,
-  UprightFont = Light,
-  BoldFont = Regular
-]
-
-\newfontfamily\RobotoCon{Roboto Condensed}[
-  Path = ./roboto/RobotoCondensed-, Extension = .ttf,
-  UprightFont = Regular,
-  BoldFont = Bold
-]  
-
-\newfontfamily\Roboto{Roboto}[
-  Path = ./roboto/Roboto-, Extension = .ttf,
-  UprightFont = Regular,
-  BoldFont = Black
-]  
-
-\newfontfamily\SpaceRoboto{Roboto}[
-  Path = ./roboto/Roboto-, Extension = .ttf,
-  UprightFont = Regular,
-  BoldFont = Medium,
-  UprightFeatures={LetterSpace=35},
-  BoldFeatures={LetterSpace=35}
-]  
+%\RequirePackage{fontspec}
+%\defaultfontfeatures{Ligatures=TeX}
+%\setmainfont{Source Serif Pro}[
+%  Path = ./source-serif-pro/SourceSerifPro-, Extension = .otf,
+%  UprightFont= Light,
+%  ItalicFont = LightIt,
+%  BoldFont   = Regular,
+%  BoldItalicFont = It,
+%]
+%\setsansfont{Roboto Condensed}[
+%  Path = ./roboto/RobotoCondensed-, Extension = .ttf,
+%  UprightFont = Light,
+%  BoldFont = Regular
+%]
+%
+%\setmonofont{Source Code Pro}[
+%  Path = ./source-code-pro/SourceCodePro-, Extension = .otf,
+%  UprightFont = Light,
+%  BoldFont = Regular
+%]
+%
+%\newfontfamily\RobotoCon{Roboto Condensed}[
+%  Path = ./roboto/RobotoCondensed-, Extension = .ttf,
+%  UprightFont = Regular,
+%  BoldFont = Bold
+%]
+%
+%\newfontfamily\Roboto{Roboto}[
+%  Path = ./roboto/Roboto-, Extension = .ttf,
+%  UprightFont = Regular,
+%  BoldFont = Black
+%]
+%
+%\newfontfamily\SpaceRoboto{Roboto}[
+%  Path = ./roboto/Roboto-, Extension = .ttf,
+%  UprightFont = Regular,
+%  BoldFont = Medium,
+%  UprightFeatures={LetterSpace=35},
+%  BoldFeatures={LetterSpace=35}
+%]
 
 
 \RequirePackage{microtype}
@@ -120,12 +121,12 @@
 %%             {\Large\sffamily\bfseries}{\thesection}{0.25em}{}
 %% \titleformat{\subsection}
 %%             {\large\sffamily\bfseries}{\thesection}{0.25em}{}
-            
+
 \titleformat{\section}{\Large\sffamily\bfseries}
             {\llap{{\textcolor{lightgray}{\normalfont\sffamily\thesection}}\hskip 0.5em}}{0em}{}
 \titleformat{\subsection}{\large\sffamily\bfseries}
      {\llap{{\textcolor{lightgray}{\normalfont\sffamily\thesubsection}}\hskip 0.5em}}{0em}{}
-     
+
 \titleformat{\subsubsection}[runin]
             {\normalfont\sffamily\bfseries}{}{0em}{}[\mbox{ --- }]
 \titlespacing{\subsubsection}
@@ -235,7 +236,7 @@
 % --- Various convenient macros -----------------------------------------------
 \RequirePackage[many]{tcolorbox}
 \newtcbox{\iconbox}[1][]{%
-  enhanced,nobeforeafter,tcbox raise base, 
+  enhanced,nobeforeafter,tcbox raise base,
   boxrule=0.4pt, top=0pt, bottom=-1pt,
   right=.1pt, left=.1pt, arc=1pt, boxsep=1pt,
   fontupper={\tiny \sffamily}, before upper={\vphantom{dlg}},
@@ -246,22 +247,22 @@
 
 % See https://tex.stackexchange.com/questions/99316/symbol-for-external-links
 \newcommand{\ExternalLink}{%
-    \tikz[x=1.2ex, y=1.2ex, baseline=-0.05ex]{% 
+    \tikz[x=1.2ex, y=1.2ex, baseline=-0.05ex]{%
         \begin{scope}[x=1ex, y=1ex]
-            \clip (-0.1,-0.1) 
-                --++ (-0, 1.2) 
-                --++ (0.6, 0) 
-                --++ (0, -0.6) 
-                --++ (0.6, 0) 
+            \clip (-0.1,-0.1)
+                --++ (-0, 1.2)
+                --++ (0.6, 0)
+                --++ (0, -0.6)
+                --++ (0.6, 0)
                 --++ (0, -1);
-            \path[draw, 
-                line width = 0.5, 
-                rounded corners=0.5] 
+            \path[draw,
+                line width = 0.5,
+                rounded corners=0.5]
                 (0,0) rectangle (1,1);
         \end{scope}
-        \path[draw, line width = 0.5] (0.5, 0.5) 
+        \path[draw, line width = 0.5] (0.5, 0.5)
             -- (1, 1);
-        \path[draw, line width = 0.5] (0.6, 1) 
+        \path[draw, line width = 0.5] (0.6, 1)
             -- (1, 1) -- (1, 0.6);
         }
     }
@@ -296,25 +297,25 @@
 
 
 % --- Bibliography ------------------------------------------------------------
-\RequirePackage[
-  backend=biber,
-  style = numeric,
-  % style=authoryear,
-  sorting = none,
-  giveninits = true,
-  maxcitenames=3,
-  mincitenames=1,
-  maxbibnames=10,
-  isbn = false,
-  url = true,
-  doi = true,
-  autocite = superscript,
-  natbib = true]{biblatex}
-\RequirePackage{bibentry}
-\DeclareFieldFormat{labelnumberwidth}{#1\adddot}
-\renewcommand*{\bibfont}{\small \sffamily}
-\addbibresource{\articleBIBLIOGRAPHY}
-\renewcommand{\citet}[1]{\citeauthor{#1}\supercite{#1}}
+%\RequirePackage[
+%  backend=biber,
+%  style = numeric,
+%  % style=authoryear,
+%  sorting = none,
+%  giveninits = true,
+%  maxcitenames=3,
+%  mincitenames=1,
+%  maxbibnames=10,
+%  isbn = false,
+%  url = true,
+%  doi = true,
+%  autocite = superscript,
+%  natbib = true]{biblatex}
+%\RequirePackage{bibentry}
+%\DeclareFieldFormat{labelnumberwidth}{#1\adddot}
+%\renewcommand*{\bibfont}{\small \sffamily}
+%\addbibresource{\articleBIBLIOGRAPHY}
+%\renewcommand{\citet}[1]{\citeauthor{#1}\supercite{#1}}
 
 %Example for clickable title:
 %\newbibmacro{string+doi}[1]{%
@@ -329,11 +330,11 @@
 %% green) is available. We print the DOI as text to make sure that
 %% it's accessible in printed version and to robots that only analyse
 %% the printed text.
-\DeclareFieldFormat{doi}{%
-  \mkbibacro{DOI}\addcolon\space
-  \ifhyperref
-    {\href{https://oadoi.org/#1}{\nolinkurl{#1}}}
-    {\nolinkurl{#1}}}
+%\DeclareFieldFormat{doi}{%
+%  \mkbibacro{DOI}\addcolon\space
+%  \ifhyperref
+%    {\href{https://oadoi.org/#1}{\nolinkurl{#1}}}
+%    {\nolinkurl{#1}}}
 
 %% Add \sloppy because DOIs are quite often long.
 \appto{\bibsetup}{\sloppy}
@@ -350,19 +351,19 @@
 %% text will correctly link to the identifiers. See
 %% https://arxiv.org/help/arxiv_identifier . This is from biblatex.def,
 %% but with \space removed.
-\DeclareFieldFormat{eprint:arxiv}{%
-  arXiv\addcolon
-  \ifhyperref
-    {\href{http://arxiv.org/abs/#1}{%
-       \nolinkurl{#1}%
-       \iffieldundef{eprintclass}
-         {}
-         {\addspace\texttt{\mkbibbrackets{\thefield{eprintclass}}}}}}
-    {\nolinkurl{#1}
-     \iffieldundef{eprintclass}
-       {}
-       {\addspace\texttt{\mkbibbrackets{\thefield{eprintclass}}}}}}
-\DeclareFieldAlias{eprint:arXiv}{eprint:arxiv}
+%\DeclareFieldFormat{eprint:arxiv}{%
+%  arXiv\addcolon
+%  \ifhyperref
+%    {\href{http://arxiv.org/abs/#1}{%
+%       \nolinkurl{#1}%
+%       \iffieldundef{eprintclass}
+%         {}
+%         {\addspace\texttt{\mkbibbrackets{\thefield{eprintclass}}}}}}
+%    {\nolinkurl{#1}
+%     \iffieldundef{eprintclass}
+%       {}
+%       {\addspace\texttt{\mkbibbrackets{\thefield{eprintclass}}}}}}
+%\DeclareFieldAlias{eprint:arXiv}{eprint:arxiv}
 
 
 % --- Copyright statement -----------------------------------------------------
@@ -393,7 +394,9 @@
       }
     }
   }
-  \vspace{-.25em} \RobotoCon \articleTITLE
+  \vspace{-.25em}
+  %\RobotoCon
+  \articleTITLE
 }
 
 

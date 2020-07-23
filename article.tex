@@ -2,6 +2,8 @@
 
 \input{preamble.tex}
 
+\usepackage[numbers]{natbib}
+
 \begin{document}
 
 \input{header.tex}
@@ -9,7 +11,9 @@
 
 \hypersetup{linkcolor=black,urlcolor=darkgray}
 \renewcommand\emph[1]{{\bfseries #1}}
-\setlength\bibitemsep{0pt}
-\printbibliography
+%\setlength\bibitemsep{0pt}
+%\printbibliography
+\bibliographystyle{mnras_openaccess_note}
+\bibliography{RBG08_rep}
 
 \end{document}

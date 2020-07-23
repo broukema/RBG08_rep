@@ -10,9 +10,10 @@
         anchor=north west, minimum width=3.75cm, minimum height=10mm]
         at (current page.north west) {};
   \node [text=white, anchor=center, yshift=-39mm, xshift=1.875cm]
-         at (current page.north west) {\small \SpaceRoboto RESCIENCE C};
+  at (current page.north west) {\small
+    %\SpaceRoboto
+    RESCIENCE C};
 \end{tikzpicture}
-
 
 %% --- Title -------------------------------------------------------------------
 {\let\newpage\relax\maketitle} \maketitle
@@ -35,7 +36,7 @@
              {\reviewerIINAME\ifdefempty{\reviewerIIORCID}{}{$^{\orcid{\reviewerIIORCID}}$}\\}
   ~\\
   }
-  %%           
+  %%
   \textbf{Received}\\
   \ifdefempty{\dateRECEIVED}{---}{\dateRECEIVED}\\
   ~\\
@@ -47,7 +48,7 @@
   \textbf{DOI}\\
   \ifdefempty{\articleDOI}{---}{\articleDOI}
 }
- 
+
 
 %% --- Bottom statement -------------------------------------------------------
 \newcommand{\container}[1]{\def\@container{#1}}
@@ -56,12 +57,12 @@
     \begin{statement}
       \scriptsize \sffamily
       \hrule \vskip .5em
-      Copyright © \articleYEAR~\authorsABBRV,
+      Copyright {\textcopyright} \articleYEAR~\authorsABBRV,
       released under a Creative Commons Attribution 4.0 International license.
-      
+
       Correspondence should be addressed to
       \contactNAME~(\href{mailto:\contactEMAIL}{\contactEMAIL})
-  
+
       The authors have declared that no competing interests exist.
 
       \ifdefempty{\codeURL}{}
